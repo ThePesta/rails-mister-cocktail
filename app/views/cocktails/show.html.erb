@@ -1,1 +1,12 @@
-<h1>cocktail show</h1>
+<h1 class="text-center"><%= @cocktail.name %></h1>
+
+<%= link_to "Add a new dose", new_cocktail_dose_path(@cocktail) %>
+
+<h2>How to make <%= @cocktail.name %> </h2>
+<ul class="list-unstyled">
+  <% @cocktail.doses.each do |dose| %>
+    <li><%= dose.description %> of <%= dose.ingredient.name %> <%= link_to "[DELETE]", dose_path(dose), method: :delete %></li>
+  <% end %>
+</ul>
+
+<%= render 'doses/new' %>
