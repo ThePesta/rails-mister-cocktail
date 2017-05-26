@@ -1,7 +1,7 @@
 <h1 class="text-center">Muster Cocktail</h1>
 <% @cocktails.each do |cocktail| %>
   <div class="col-xs-4">
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/300/300/?random');">
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cocktail["poto"] ? cl_image_path(cocktail.poto) : cl_image_path("sample") %>);">
       <div class="card-description">
         <h2><%= cocktail.name %></h2>
       </div>
@@ -9,3 +9,4 @@
     </div>
   </div>
 <% end %>
+

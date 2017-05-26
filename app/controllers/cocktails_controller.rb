@@ -1,8 +1,8 @@
 class CocktailsController < ApplicationController
-  before_action :set_cocktail, only: [:show]
+  before_action :set_cocktail, only: [:show, :update]
 
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.order('id')
   end
 
   def show
@@ -22,6 +22,15 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def update
+    @cocktail.poto = cocktail_params[:poto]
+    if @cocktail.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
+    end
+  end
+
   private
 
   def set_cocktail
@@ -29,6 +38,6 @@ class CocktailsController < ApplicationController
   end
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :poto,:poto_cache)
   end
 end

@@ -1,10 +1,40 @@
 <h1 class="text-center"><%= @cocktail.name %></h1>
-
+<%= cl_image_tag @cocktail.poto%>
 <h2>How to make <%= @cocktail.name %> </h2>
 <ul class="list-unstyled">
   <% @cocktail.doses.each do |dose| %>
     <li><%= dose.description %> of <%= dose.ingredient.name %> <%= link_to "[DELETE]", dose_path(dose), method: :delete %></li>
   <% end %>
 </ul>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Add/update image
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add an image</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @cocktail do |f| %>
+          <%= f.input :poto %>
+          <%= f.input :poto_cache, as: :hidden %>
+
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit class:"btn btn-primary"%>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <%= render 'doses/new' %>

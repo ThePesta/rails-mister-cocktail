@@ -14,3 +14,38 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+$( document ).ready(function() {
+  console.log('im working')
+  var msg =
+  [
+    "don't click me",
+    "ouch, why did you click me?",
+    "stahp it",
+    "whyyy",
+    "noooo",
+    "no more please",
+    "argghh",
+    "please, i have family...",
+    ":( pretty please",
+    "once more and im done for",
+    "*DEAD*"
+  ];
+
+  var c = 0;
+
+  $('#special').on("click", function(e){
+    $('#special').html(msg[c]);
+    c += 1;
+
+    if(c == 10) {
+      $('#special').attr('data-toggle', "modal")
+    }
+
+    if(c == 11) {
+      $('#special').attr('disabled','disabled');
+    }
+
+  });
+});
+
+

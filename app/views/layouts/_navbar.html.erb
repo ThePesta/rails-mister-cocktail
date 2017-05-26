@@ -10,8 +10,37 @@
         <li><%= link_to "Add a new cocktail", new_cocktail_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "redundant", "#" %></li>
+        <button type="button" class="btn btn-primary btn-lg" id="special" data-target="#myModal">dont press</button>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <%= image_tag "http://cultofthepartyparrot.com/parrots/hd/parrot.gif" %>
+        <h4>wow you actually click so many times on the button</h4>
+      </div>
+      <div class="modal-body">
+        <% html_file = open("http://cultofthepartyparrot.com/") %>
+        <% html_doc = Nokogiri::HTML(html_file) %>
+        <% html_doc.search('ul li img').each do |element| %>
+          <%= image_tag "http://cultofthepartyparrot.com/#{element.attribute('src')}", width: 50, height: 50 %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">That's enough for now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
